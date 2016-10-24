@@ -5,7 +5,7 @@ defmodule PanelVote.UserSocket do
   # channel "room:*", PanelVote.RoomChannel
 
   ## Transports
-  transport :websocket, Phoenix.Transports.WebSocket
+  # transport :websocket, Phoenix.Transports.WebSocket
   # transport :longpoll, Phoenix.Transports.LongPoll
   transport :websocket, Phoenix.Transports.WebSocket,
     timeout: 45_000
