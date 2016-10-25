@@ -100,7 +100,8 @@
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
       //window.location.href = '/path';
-      post('/contact/', {token: 'Johnny Bravo'});
+      await sleep(2000);
+      post('/user/', {token: 'Johnny Bravo'});
     });
   }
 </script>
