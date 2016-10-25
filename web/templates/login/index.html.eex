@@ -104,7 +104,7 @@
       console.log(response);
       console.log(token);
       //window.location.href = '/path';
-      //post('api/v1/user/', {token: '' + token});
+      post('api/v1/user/', {token: '' + token});
     });
   }
 
