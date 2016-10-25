@@ -4,4 +4,11 @@ defmodule PanelVote.LoginController do
   def index(conn, _params) do
     render conn, "index.html"
   end
+
+
+  def create_user(conn, _params) do
+  	conn
+      |> put_status(201)
+      |> json(_params)
+  end
 end

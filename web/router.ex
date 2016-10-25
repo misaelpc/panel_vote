@@ -19,8 +19,9 @@ defmodule PanelVote.Router do
     get "/", LoginController, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", PanelVote do
-  #   pipe_through :api
-  # end
+  #Other scopes may use custom stacks.
+  scope "/api/v1", PanelVote do
+    pipe_through :api
+    post "/user/", LoginController, :create_user
+  end
 end
