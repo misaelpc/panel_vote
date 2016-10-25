@@ -10,7 +10,7 @@
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
-      window.location.href = '/path'; 
+      //window.location.href = '/path'; 
       login();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
@@ -36,13 +36,13 @@
   window.fbAsyncInit = function() {
   FB.init({
     appId      : '826557020770503',
-    cookie     : true,  // enable cookies to allow the server to access 
+    cookie     : true,  // enable cookies to allow the server to access
                         // the session
     xfbml      : true,  // parse social plugins on this page
     version    : 'v2.5' // use graph api version 2.5
   });
 
-  // Now that we've initialized the JavaScript SDK, we call 
+  // Now that we've initialized the JavaScript SDK, we call
   // FB.getLoginStatus().  This function gets the state of the
   // person visiting this page and can return one of three states to
   // the callback you provide.  They can be:
@@ -60,6 +60,30 @@
 
   };
 
+  function post(path, params, method) {
+      method = method || "post"; // Set method to post by default if not specified.
+
+      // The rest of this code assumes you are not using a library.
+      // It can be made less wordy if you use one.
+      var form = document.createElement("form");
+      form.setAttribute("method", method);
+      form.setAttribute("action", path);
+
+      for(var key in params) {
+          if(params.hasOwnProperty(key)) {
+              var hiddenField = document.createElement("input");
+              hiddenField.setAttribute("type", "hidden");
+              hiddenField.setAttribute("name", key);
+              hiddenField.setAttribute("value", params[key]);
+
+              form.appendChild(hiddenField);
+           }
+      }
+
+      document.body.appendChild(form);
+      form.submit();
+  }
+
   // Load the SDK asynchronously
   (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
@@ -75,7 +99,8 @@
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
-      window.location.href = '/path';
+      //window.location.href = '/path';
+      post('/contact/', {token: 'Johnny Bravo'});
     });
   }
 </script>
