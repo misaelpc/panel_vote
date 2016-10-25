@@ -95,6 +95,10 @@
 
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
   function login() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
@@ -104,10 +108,6 @@
       await sleep(2000);
       post('/user/', {token: 'Johnny Bravo'});
     });
-  }
-
-  function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
   }
 </script>
 
