@@ -104,6 +104,10 @@
       post('/user/', {token: 'Johnny Bravo'});
     });
   }
+
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 </script>
 
 
