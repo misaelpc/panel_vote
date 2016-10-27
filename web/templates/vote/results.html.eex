@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!-- Website template by freewebsitetemplates.com -->
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Clash of Virtual Machines</title>
+	<link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+	<script src="js/modernizr.custom.js"></script>
+</head>
+<body>
+	<div id="page">
+		<div id="header">
+			<div class="background">
+				<h1 id="logo"> <a href="index.html">Clash of Virtual Machines</a> </h1>
+				<div id="navigation">
+					<ul>
+						<li class="selected">
+							<a href="vote">Votación</a>
+						</li>
+						<li class="selected">
+							<a href="results">Resultados</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="contents">
+			<div id="adbox">
+				<div id=centeredVote >
+					<dl>  <dt>    Virtual Machines  </dt>  <dd class="percentage percentage-11"><span class="text">IE 11: 11.33%</span></dd>  <dd class="percentage percentage-49"><span class="text">Chrome: 49.77%</span></dd>  <dd class="percentage percentage-16"><span class="text">Firefox: 16.09%</span></dd>  <dd class="percentage percentage-5"><span class="text">Safari: 5.41%</span></dd>  <dd class="percentage percentage-2"><span class="text">Opera: 1.62%</span></dd>  <dd class="percentage percentage-2"><span class="text">Android 4.4: 2%</span></dd></dl>
+				</div>
+			</div>
+		</div>
+		<div id="footer">
+			<div class="background">
+				<div class="body">
+					<p id="footnote">
+						© Copyright 2023. All rights reserved.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

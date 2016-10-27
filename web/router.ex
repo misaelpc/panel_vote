@@ -17,6 +17,8 @@ defmodule PanelVote.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", LoginController, :index
+    get "/vote", VoteController, :vote
+    get "/results", VoteController, :results
   end
 
   #Other scopes may use custom stacks.
