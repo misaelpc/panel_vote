@@ -6,9 +6,9 @@ defmodule PanelVote.LoginController do
   end
 
 
-  def create_user(conn, _params) do
+  def create_user(conn, %{"token" => token} = params) do
   	conn
-      |> put_status(201)
-      |> json(_params)
+  		|> put_session(:token, token)
+      |> redirect(to: "/vote")
   end
 end

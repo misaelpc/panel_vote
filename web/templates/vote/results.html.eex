@@ -27,7 +27,12 @@
 		<div id="contents">
 			<div id="adbox">
 				<div id=centeredVote >
-					<dl>  <dt>    Virtual Machines  </dt>  <dd class="percentage percentage-11"><span class="text">IE 11: 11.33%</span></dd>  <dd class="percentage percentage-49"><span class="text">Chrome: 49.77%</span></dd>  <dd class="percentage percentage-16"><span class="text">Firefox: 16.09%</span></dd>  <dd class="percentage percentage-5"><span class="text">Safari: 5.41%</span></dd>  <dd class="percentage percentage-2"><span class="text">Opera: 1.62%</span></dd>  <dd class="percentage percentage-2"><span class="text">Android 4.4: 2%</span></dd></dl>
+					<dl>
+						<dt>    Virtual Machines  </dt>
+							<%= for entry <- @entries do %>
+							  <dd class="percentage percentage-<%= entry.percentage %>"><span class="text"><%= entry.name %>: <%= entry.percentage %>%</span></dd>
+							<% end %>
+					</dl>
 				</div>
 			</div>
 		</div>
