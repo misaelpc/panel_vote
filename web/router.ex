@@ -19,12 +19,18 @@ defmodule PanelVote.Router do
 
   scope "/", PanelVote do
     pipe_through :browser # Use the default browser stack
-
-    get "/", LoginController, :index
+    pipe_through :auth
     get "/vote", VoteController, :vote
     get "/results", VoteController, :results
     post "/register_vote", VoteController, :register
   end
+
+  scope "/", PanelVote do
+    pipe_through :browser # Use the default browser stack
+    get "/", LoginController, :index
+  end
+
+
 
   #Other scopes may use custom stacks.
   scope "/api/v1", PanelVote do
@@ -33,6 +39,7 @@ defmodule PanelVote.Router do
   end
 
   defp authenticate(conn, _params) do
+    IO.inspect "authenticating"
     if PanelVote.Authentication.authenticated?(conn) do
       conn
     else
