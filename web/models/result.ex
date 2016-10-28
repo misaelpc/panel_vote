@@ -3,7 +3,13 @@ defmodule PanelVote.Result do
 	defstruct name: "", percentage: 0
 
 	def calculate_percentage(vm) do
-		percentage = (vm_votes(vm) * 100 ) / total_votes
+		percentage =
+		case vm_votes(vm) do
+		  0 ->
+		  	0
+		  _ ->
+		  	(vm_votes(vm) * 100 ) / total_votes
+		end
 		%PanelVote.Result{name: vm.name, percentage: round(percentage)}
 	end
 
