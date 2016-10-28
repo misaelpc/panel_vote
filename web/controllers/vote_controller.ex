@@ -22,6 +22,8 @@ defmodule PanelVote.VoteController do
   end
 
   def results(conn, _params) do
-    render conn, "results.html"
+    entries = Enum.map(vms, fn(vm) -> Result.calculate_percentage(vm) end)
+  	render conn, :results,
+  		entries: entries
   end
 end
