@@ -27,12 +27,16 @@
 		<div id="contents">
 			<div id="adbox">
 				<div id=centered >
-					<%= form_for @changeset, "/register_vote", fn f -> %>
-						<%= for vm <- @vms do %>
-						  <input type="radio" id="<%= vm.name %>" name="vm" value="<%= vm.name %>" />
-						  <label for="<%= vm.name %>"><span></span><%= vm.name %></label><br>
+					<%= if @voted do %>
+					  ¡¡¡ Gracias por tu voto !!!
+					<% else %>
+						<%= form_for @changeset, "/register_vote", fn f -> %>
+							<%= for vm <- @vms do %>
+							  <input type="radio" id="<%= vm.name %>" name="vm" value="<%= vm.name %>" />
+							  <label for="<%= vm.name %>"><span></span><%= vm.name %></label><br>
+							<% end %>
+							<button type="submit" class="button">Buscar</button>
 						<% end %>
-						<button type="submit" class="button">Buscar</button>
 					<% end %>
 				</div>
 			</div>
