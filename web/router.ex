@@ -28,8 +28,8 @@ defmodule PanelVote.Router do
   scope "/", PanelVote do
     pipe_through :browser # Use the default browser stack
     get "/", LoginController, :index
+    get "/register/:token", LoginController, :register
   end
-
 
 
   #Other scopes may use custom stacks.

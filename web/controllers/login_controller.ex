@@ -8,7 +8,13 @@ defmodule PanelVote.LoginController do
 
   def create_user(conn, %{"token" => token} = params) do
   	conn
-  		|> get("/")
+  		#|> redirect(to: "/")
+  		#|> put_session(:token, token)
+      |> redirect(to: "/register/#{token}")
+  end
+
+  def register(conn, %{"token" => token} = params) do
+  	conn
   		|> put_session(:token, token)
       |> redirect(to: "/vote")
   end
