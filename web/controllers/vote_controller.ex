@@ -10,7 +10,6 @@ defmodule PanelVote.VoteController do
 		user = User.find_by_token(token)
 		vms = VirtualMachine.fetch_all
 		changeset = PanelVote.Vote.changeset(%PanelVote.Vote{},params)
-		IO.inspect user
 		render conn, :vote,
     	vms: vms,
     	voted: user.voted,
@@ -20,16 +19,25 @@ defmodule PanelVote.VoteController do
   def register(conn,%{"vm" => vm_name} =params) do
   	token = get_session(conn, :token)
 		user = User.find_by_token(token)
+		case user.voted do
+			true ->
+				render conn, :vote,
+    			vms: [],
+    			voted: true,
+    			changeset: []
+			false ->
+				change = Ecto.Changeset.change user, voted: true
+				PanelVote.Repo.update!(change)
 
-		change = Ecto.Changeset.change user, voted: true
-    PanelVote.Repo.update!(change)
+				vm = VirtualMachine.find_by_name(vm_name)
+				Vote.register(vm)
+				vms = VirtualMachine.fetch_all
+				entries = Enum.map(vms, fn(vm) -> Result.calculate_percentage(vm) end)
+				render conn, :results,
+				  entries: entries
+		end
 
-  	vm = VirtualMachine.find_by_name(vm_name)
-		Vote.register(vm)
-		vms = VirtualMachine.fetch_all
-		entries = Enum.map(vms, fn(vm) -> Result.calculate_percentage(vm) end)
-  	render conn, :results,
-  		entries: entries
+
   end
 
   def results(conn, _params) do
